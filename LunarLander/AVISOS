@@ -1,0 +1,61 @@
+*** Pongan aquí avisos, aclaraciones o código de prueba ***
+
+-------Para que corra el programa---------------------------
+
+1.Instalar Allegro (depende del linux)
+2.Asegurar que esté el folder de Allegro en /usr/include . Debe aparecer un folder con nombre allegro5.
+3.Crear folder del proyecto donde quiera
+4.Crear los folders 'src' 'bin' 'incl'
+5.Tener el main.c
+6.Tener el makefile
+    Para compilar:
+    1.estar en el mismo directorio del proyecto
+    2.escribir 'make'
+    3.Si se quiere borrar el ejecutable del bin escribir 'make clean'.
+    
+--------------------------------------------------------------
+
+
+----------------Prueba audio makefile-------------------------
+Cambiar la línea de cflags por esta
+CFLAGS= -std=c11 -g -I$(INCLDIR) -o$(BINDIR)/$(OUTFILE) -lm -lallegro -lallegro_main -lallegro_acodec
+---------------------------------------------------------------
+
+-----------------Coordenadas botones---------------------------
+Empezar
+(213,124)   (576,124)
+(213,196)   (576,196)
+
+Tabla de líderes
+(213,222)   (576,222)
+(213,284)   (576,284)
+
+Salir
+(213,308)   (576,308)
+(213,371)   (576,371)
+
+-----------------------------------------------------------------
+prueba de empezar background 
+añadir:
+ALLEGRO_BITMAP *empezarbackground = NULL;
+
+empezarbackground = al_load_bitmap("resources/background/empezarbackground.png");
+
+if((event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) && (mouseposx > 213 && mouseposx < 576 && mouseposy > 124 && mouseposy < 196) ){
+            al_draw_bitmap(empezarbackground, 0, 0, 0);
+        }
+        
+---------------------------------------------------------------------------------------
+El código que subí es para el caso de la plataforma 1. 
+En los otros 2 casos cambian 3 cosas en el código: 
+1. En el main.c se debe cargar la imagen respectiva de la plataforma que se esté usando. 
+2. Las coordenadas en y de donde se dibuja la plataforma cambian porque una es más pequeña que otra. 
+para la 1 es: 
+al_draw_bitmap(*plataforma, 0, 240, 0);
+para la 2 y 3: 
+al_draw_bitmap(*plataforma, 0, 333, 0);
+3. Cambia los if para cada plataforma por eso subí 3 archivos de texto para cada 1. 
+
+Donde dice perder se debe redirigir a la pantalla de pérdida 
+Donde dice ganar se debe redirigir a la pantalla de gane
+
